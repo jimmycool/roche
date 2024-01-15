@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<head>
+    <link  href="a.css"></link>
+    <script type="text/javascript">
+      function view()
+      {
+
+      var url="http://127.0.0.1:5000/";
+      let xhr = new XMLHttpRequest();
+      //xhr.setRequestHeader("Accept", "application/json");
+      //xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.open("GET", url,true);
+      xhr.onreadystatechange = function() 
+		{
+                if (xhr.readyState === 4) 
+			{
+
+           var data=JSON.parse(xhr.responseText);
+           console.log(data['GET']);
+           console.log(data['POST']);
+           v="GET reuests:"+data['GET']+",POST requests:"+data['POST']
+           document.getElementById('r').innerHTML=v
+           
+            
+      }
+      
+
+    } 
+    xhr.send();      
+  }     
+ function Display()
+      {
+
+      var url="http://127.0.0.1:5000/test";
+      let xhr = new XMLHttpRequest();
+      //xhr.setRequestHeader("Accept", "application/json");
+      //xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.open("POST", url,true);
+      var data = new FormData();
+	  data.append('int1', document.getElementById('int1').value);
+	 data.append('int2', document.getElementById('int2').value);
+	 data.append('limit', document.getElementById('limit').value);
+	 data.append('str1', document.getElementById('str1').value);
+	 data.append('str2', document.getElementById('str2').value);
+      xhr.onreadystatechange = function() 
+		{
+                if (xhr.readyState === 4) 
+			{
+
+           var data=xhr.responseText;
+           console.log(data);
+           document.getElementById('r').innerHTML=data
+            
+      }
+      
+
+    } 
+    xhr.send(data);      
+  }     
+
+    </script>
+</head>
+<body>
+<button onclick="Display()">click</button>
+<br>
+<button onclick="view()">View statistics</button>
+<br>
+<label>int1</label><input type="text" id='int1'/>
+<br>
+<label>int2</label><input type="text" id='int2'/>
+<br>
+<label>limit</label><input type="text" id='limit'/>
+<br>
+<label>str1</label><input type="text" id='str1'/>
+<br>
+<label>str2</label><input type="text" id='str2'/>
+<br>
+<div id="r" style="color:green"></div>
+
+
+</body>
+</html>
