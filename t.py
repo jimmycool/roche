@@ -7,7 +7,7 @@ import subprocess
 from flask_cors import CORS, cross_origin
 app = Flask(__name__)
 cors = CORS(app)
-r={"POST":0,"GET":0}
+r={"POST":0,"GET":0,"PUT":0}
 app.config['CORS_HEADERS'] = 'Content-Type'
 '''def fio_test():
     g=""
